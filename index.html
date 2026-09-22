@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Loading...</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Tahoma, sans-serif;
+    color: #fff;
+    background: url('https://picsum.photos/800/600') center/cover no-repeat;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+  }
+  .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #fff;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+  }
+  .percent {
+    margin-top: 12px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <img src="https://picsum.photos/120" alt="logo" class="logo">
+    <div class="title">در حال نصب... لطفاً صبر کنید</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="fill"></div>
+    </div>
+    <div class="percent" id="percent">0%</div>
+  </div>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('fill').style.width = '100%';
+    }, 100);
+  });
+  let p = 0;
+  const interval = setInterval(() => {
+    p++;
+    document.getElementById('percent').textContent = p + '%';
+    if (p >= 100) clearInterval(interval);
+  }, 10);
+</script>
+</body>
+</html>
