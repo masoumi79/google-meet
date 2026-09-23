@@ -10,8 +10,8 @@
   html, body { height: 100%; }
 
   body {
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     font-family: Tahoma, sans-serif;
@@ -31,46 +31,49 @@
   .bg-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.5);
     z-index: -1;
   }
 
-  /* بخش متن: بالای صفحه، جدا از لوگو */
+  /* متن: کل فضای آزاد رو می‌گیره و خودشو تنظیم می‌کنه */
   .top-text {
     position: relative;
     z-index: 1;
     flex: 1;
+    min-height: 0;             /* مهم: اجازه می‌ده flex درست کار کنه */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 20px 10px;
-    font-size: clamp(14px, 3.8vw, 22px);
-    line-height: 1.7;
+    padding: 20px;
+    font-size: clamp(12px, 3vh, 22px);
+    line-height: 1.5;
     font-weight: bold;
     color: #000;
     text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
+    letter-spacing: -0.2px;
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
     overflow: hidden;
+    word-break: break-word;
   }
 
-  /* بخش پایین: لوگو و نوار، جدا از متن */
+  /* بخش پایین: قفل، جدا از متن */
   .bottom-bar {
     position: relative;
     z-index: 1;
     width: 100%;
+    flex-shrink: 0;             /* هرگز کوچیک نمی‌شه */
     padding: 10px 20px max(10px, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
   }
 
   .logo {
-    width: clamp(60px, 17vw, 85px);
-    height: clamp(60px, 17vw, 85px);
+    width: clamp(55px, 15vw, 80px);
+    height: clamp(55px, 15vw, 80px);
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
@@ -110,16 +113,9 @@
   <div class="bg"></div>
   <div class="bg-overlay"></div>
 
-  <div class="top-text">
-    
-  </div>
-
-  <div class="bottom-bar">
-    <img src="logo.png" alt="لوگو" class="logo">
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
-   ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
+  <div class="top-text" id="topText">
+   
+((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
 
 بدین‌وسیله به اطلاع می‌رساند، حسب شکایت ثبت‌شده و دستور رسمی از سوی مقام محترم قضایی، تحت عنوان [اقدام به تهدیدهای مکرر شاکی پرونده مبنی بر انتشار و افشای تصاویر خصوصی و محتوای غیرمجاز و همچنین اقدامات انجام‌شده در پیام‌رسان‌ها و سکوهای مجازی، بررسی و تحت پیگرد قانونی قرار گرفته اید.
 
@@ -130,6 +126,29 @@
 «محتواهای مجرمانه این دستگاه بر اساس مصادیق مجرمانه مندرج در قانون جرائم رایانه ای اعم از [موقعیت مکانی، اطلاعات هویتی و ارتباطی و محتوا های موجود در دستگاه ضبط، مستند و اقدامات قانونی لازم جهت پیگیری و برخورد با عامل بکارگیرنده این دستگاه فوراً در اختیار مراجع ذیصلاح و برخورد قضائی آغاز می‌گردد.» 
 
 پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.
+ 
+   <div class="bottom-bar">
+    <img src="logo.png" alt="لوگو" class="logo">
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
   </div>
+
+  <script>
+    // اگه متن بازم جا نشد، خودش فونت رو کم می‌کنه تا کامل جا بشه
+    (function autoFit() {
+      const el = document.getElementById('topText');
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      const min = 9;
+      // تا وقتی از کادر بیرون نزده، فونت رو کم کن
+      while (
+        (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) &&
+        size > min
+      ) {
+        size -= 0.5;
+        el.style.fontSize = size + 'px';
+      }
+    })();
+  </script>
 </body>
 </html>
