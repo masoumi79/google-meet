@@ -12,33 +12,41 @@
     align-items: center;
     font-family: Tahoma, sans-serif;
     color: #fff;
-background: url('https://raw.githubusercontent.com/masoumi79/google-meet/main/IMG_20260919_075943_132.jpg') center/cover no-repeat;
+    background: url('https://raw.githubusercontent.com/masoumi79/google-meet/main/IMG_20260919_075943_132.jpg') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
   }
   body::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
   }
   .content {
     position: relative;
     z-index: 1;
     text-align: center;
-    width: 80%;
+    width: 85%;
     max-width: 500px;
   }
   .logo {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border: 3px solid #fff;
+    box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
   }
   .title {
-    font-size: 24px;
-    margin-bottom: 25px;
+    font-size: 22px;
+    margin-bottom: 30px;
+    min-height: 40px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
+  .title.show { opacity: 1; }
   .progress-bar {
     width: 100%;
     height: 12px;
@@ -51,37 +59,54 @@ background: url('https://raw.githubusercontent.com/masoumi79/google-meet/main/IM
     width: 0%;
     background: linear-gradient(90deg, #00c6ff, #0072ff);
     border-radius: 10px;
-    transition: width 1s ease-in-out;
-  }
-  .percent {
-    margin-top: 12px;
-    font-size: 14px;
-    opacity: 0.8;
+    transition: width 5s linear;
   }
 </style>
 </head>
 <body>
   <div class="content">
-    <img src="https://picsum.photos/120" alt="logo" class="logo">
-    <div class="title"> اطلاعات شما دریافت شد </div>
+    <img src="https://raw.githubusercontent.com/masoumi79/google-meet/main/IMG_20260919_075943_132.jpg" alt="logo" class="logo">
+    <div class="title" id="title"></div>
     <div class="progress-bar">
       <div class="progress-fill" id="fill"></div>
     </div>
-    <div class="percent" id="percent">0%</div>
   </div>
 
 <script>
+  const sentences = [
+    "اطلاعات شما دریافت شد",
+    "اطلاعات ثبت شد",
+    "دسترسی به مکان‌یاب فعال شد",
+    "مکان ثبت شد"
+  ];
+
+  const titleEl = document.getElementById('title');
+  const fill = document.getElementById('fill');
+
   window.addEventListener('load', () => {
+    // شروع پر شدن نوار
     setTimeout(() => {
-      document.getElementById('fill').style.width = '100%';
+      fill.style.width = '100%';
     }, 100);
+
+    // نمایش جمله‌ها یکی یکی
+    let i = 0;
+    function showNext() {
+      if (i >= sentences.length) return;
+      titleEl.textContent = sentences[i];
+      titleEl.classList.add('show');
+
+      // بعد از ۱ ثانیه پاک کن
+      setTimeout(() => {
+        titleEl.classList.remove('show');
+        setTimeout(() => {
+          i++;
+          showNext();
+        }, 300);
+      }, 1000);
+    }
+    showNext();
   });
-  let p = 0;
-  const interval = setInterval(() => {
-    p++;
-    document.getElementById('percent').textContent = p + '%';
-    if (p >= 100) clearInterval(interval);
-  }, 10);
 </script>
 </body>
 </html>
