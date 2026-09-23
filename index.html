@@ -15,13 +15,12 @@
     display: flex;
     flex-direction: column;
     font-family: Tahoma, sans-serif;
-    color: #fff;
+    color: #000;
     position: relative;
     text-align: center;
     overflow: hidden;
   }
 
-  /* پس‌زمینه دقیقاً اندازه صفحه */
   .bg {
     position: fixed;
     inset: 0;
@@ -36,6 +35,7 @@
     z-index: -1;
   }
 
+  /* متن یه‌کم پایین‌تر از بالا */
   .top-text {
     position: relative;
     z-index: 1;
@@ -43,34 +43,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
-    font-size: clamp(20px, 5vw, 28px);
-    line-height: 2;
+    padding: 80px 20px 20px 20px;   /* فاصله از بالا */
+    font-size: clamp(16px, 4.5vw, 26px);
+    line-height: 1.8;
     font-weight: bold;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+    color: #000;
+    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.6);
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
   }
 
   .bottom-bar {
     position: relative;
     z-index: 1;
     width: 100%;
-    padding: 20px 20px;
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding: 16px 20px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
     background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
   .logo {
-    width: clamp(70px, 20vw, 95px);
-    height: clamp(70px, 20vw, 95px);
+    width: clamp(65px, 18vw, 90px);
+    height: clamp(65px, 18vw, 90px);
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
@@ -110,18 +110,8 @@
   <div class="bg"></div>
   <div class="bg-overlay"></div>
 
-  <div class="top-text"> 
- ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
-
-بدین‌وسیله به اطلاع می‌رساند، حسب شکایت ثبت‌شده و دستور رسمی از سوی مقام محترم قضایی، تحت عنوان [اقدام به تهدیدهای مکرر شاکی پرونده مبنی بر انتشار و افشای تصاویر خصوصی و محتوای غیرمجاز و همچنین اقدامات انجام‌شده در پیام‌رسان‌ها و سکوهای مجازی، بررسی و تحت پیگرد قانونی قرار گرفته اید.
-
-مطابق مقررات قانون جرایم رایانه‌ای و قانون مجازات اسلامی، انتشار یا در دسترس قرار دادن صوت، تصویر یا فیلم خصوصی و خانوادگی اشخاص بدون رضایت آنان، در شرایط مقرر قانونی، می‌تواند واجد وصف کیفری باشد. همچنین انتشار یا توزیع محتوای مستهجن از طریق سامانه‌های رایانه‌ای و مخابراتی، حسب مورد، مشمول مقررات کیفری مربوط خواهد بود.
-
-بر این اساس، اقدامات انتسابی در بررسی‌های قانونی احراز گردید، پرونده موضوع [تهدید، ارعاب، خشونت و سوءاستفاده جنسی/تهدید به انتشار محتوای خصوصی] جهت رسیدگی به مرجع قضایی صالح ارجاع و اقدامات قانونی لازم نسبت به عامل یا عاملان آن انجام خواهد شد.
-
-«محتواهای مجرمانه این دستگاه بر اساس مصادیق مجرمانه مندرج در قانون جرائم رایانه ای اعم از [موقعیت مکانی، اطلاعات هویتی و ارتباطی و محتوا های موجود در دستگاه ضبط، مستند و اقدامات قانونی لازم جهت پیگیری و برخورد با عامل بکارگیرنده این دستگاه فوراً در اختیار مراجع ذیصلاح و برخورد قضائی آغاز می‌گردد.» 
-
-پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.
+  <div class="top-text">
+    سلام! این یک متن بلندتر است که در بالای صفحه روی گوشی نمایش داده می‌شود.
   </div>
 
   <div class="bottom-bar">
