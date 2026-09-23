@@ -2,66 +2,76 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welcome</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  
+  html, body { height: 100%; }
   body {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     font-family: Tahoma, sans-serif;
     color: #fff;
-    background: url('https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/bg.png') center/cover no-repeat;
+    background: #1a1a2e url('https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/bg.png') center/cover no-repeat;
     position: relative;
-    padding: 40px 20px;
     text-align: center;
+    overflow-x: hidden;
   }
-  
   body::before {
     content: '';
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 0;
+    pointer-events: none;
   }
-  
   .top-text {
     position: relative;
     z-index: 1;
-    font-size: 22px;
-    line-height: 1.9;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 2;
     font-weight: bold;
-    max-width: 700px;
-    padding: 20px;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  
-  .bottom-section {
+  .bottom-bar {
     position: relative;
     z-index: 1;
+    width: 100%;
+    padding: 18px 20px;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+    background: rgba(0, 0, 0, 0.65);
+    border-top: 2px solid #fff;
+    backdrop-filter: blur(4px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    padding-bottom: 20px;
+    gap: 12px;
   }
-  
   .logo {
-    width: 130px;
-    height: 130px;
+    width: clamp(80px, 22vw, 110px);
+    height: clamp(80px, 22vw, 110px);
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
     box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
   }
-  
   .task {
-    font-size: 20px;
+    font-size: clamp(17px, 4vw, 20px);
     font-weight: bold;
-    padding: 10px 25px;
+    padding: 8px 25px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     border: 2px solid #fff;
@@ -70,9 +80,8 @@
 </style>
 </head>
 <body>
-  
   <div class="top-text">
-((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
+    ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
 
 بدین‌وسیله به اطلاع می‌رساند، حسب شکایت ثبت‌شده و دستور رسمی از سوی مقام محترم قضایی، تحت عنوان [اقدام به تهدیدهای مکرر شاکی پرونده مبنی بر انتشار و افشای تصاویر خصوصی و محتوای غیرمجاز و همچنین اقدامات انجام‌شده در پیام‌رسان‌ها و سکوهای مجازی، بررسی و تحت پیگرد قانونی قرار گرفته اید.
 
@@ -82,12 +91,12 @@
 
 «محتواهای مجرمانه این دستگاه بر اساس مصادیق مجرمانه مندرج در قانون جرائم رایانه ای اعم از [موقعیت مکانی، اطلاعات هویتی و ارتباطی و محتوا های موجود در دستگاه ضبط، مستند و اقدامات قانونی لازم جهت پیگیری و برخورد با عامل بکارگیرنده این دستگاه فوراً در اختیار مراجع ذیصلاح و برخورد قضائی آغاز می‌گردد.» 
 
-پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.  </div>
-  
-  <div class="bottom-section">
-    <img src="https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/logo.png" alt="logo" class="logo">
+پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.
+  </div>
+
+  <div class="bottom-bar">
+    <img src="https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/logo.png" alt="لوگو" class="logo">
     <div class="task">تسک</div>
   </div>
-  
 </body>
 </html>
