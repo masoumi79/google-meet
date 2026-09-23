@@ -28,19 +28,18 @@
     z-index: 0;
   }
 
-  /* متن */
   .top-text {
     position: absolute;
-    top: 25px;
+    top: 20px;
     left: 20px;
     right: 20px;
-    bottom: 130px;
+    bottom: 120px;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(11px, 2.6vh, 16px);
-    line-height: 1.7;
+    font-size: 20px;          /* نقطه شروع، بعد خودکار تنظیم می‌شه */
+    line-height: 1.4;
     font-weight: bold;
     color: #000;
     text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
@@ -49,7 +48,6 @@
     overflow-wrap: break-word;
   }
 
-  /* نوار پایین */
   .bottom-bar {
     position: fixed;
     bottom: 0;
@@ -100,8 +98,8 @@
 </head>
 <body>
 
-  <div class="top-text">
-    ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
+  <div class="top-text" id="topText">
+   ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
 
 بدین‌وسیله به اطلاع می‌رساند، حسب شکایت ثبت‌شده و دستور رسمی از سوی مقام محترم قضایی، تحت عنوان [اقدام به تهدیدهای مکرر شاکی پرونده مبنی بر انتشار و افشای تصاویر خصوصی و محتوای غیرمجاز و همچنین اقدامات انجام‌شده در پیام‌رسان‌ها و سکوهای مجازی، بررسی و تحت پیگرد قانونی قرار گرفته اید.
 
@@ -111,7 +109,7 @@
 
 «محتواهای مجرمانه این دستگاه بر اساس مصادیق مجرمانه مندرج در قانون جرائم رایانه ای اعم از [موقعیت مکانی، اطلاعات هویتی و ارتباطی و محتوا های موجود در دستگاه ضبط، مستند و اقدامات قانونی لازم جهت پیگیری و برخورد با عامل بکارگیرنده این دستگاه فوراً در اختیار مراجع ذیصلاح و برخورد قضائی آغاز می‌گردد.» 
 
-پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.
+پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید. 
   </div>
 
   <div class="bottom-bar">
@@ -120,6 +118,27 @@
       <div class="progress-fill"></div>
     </div>
   </div>
+
+  <script>
+    // خودکار فونت رو کوچیک می‌کنه تا متن کامل جا بشه
+    function fitText() {
+      const el = document.getElementById('topText');
+      let size = 40;              // حداکثر سایز شروع
+      const minSize = 6;          // حداقل سایز (پایین‌تر نره)
+      el.style.fontSize = size + 'px';
+
+      while (
+        (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) &&
+        size > minSize
+      ) {
+        size -= 0.5;
+        el.style.fontSize = size + 'px';
+      }
+    }
+
+    window.addEventListener('load', fitText);
+    window.addEventListener('resize', fitText);
+  </script>
 
 </body>
 </html>
