@@ -2,11 +2,18 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Welcome</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+
+  html {
+    height: 100%;
+    background: #1a1a2e url('bg.png') center center / cover no-repeat fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+
   body {
     min-height: 100vh;
     min-height: 100dvh;
@@ -14,19 +21,20 @@
     flex-direction: column;
     font-family: Tahoma, sans-serif;
     color: #fff;
-    background: #1a1a2e url('https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/bg.png') center/cover no-repeat;
     position: relative;
     text-align: center;
     overflow-x: hidden;
   }
+
   body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 0;
     pointer-events: none;
   }
+
   .top-text {
     position: relative;
     z-index: 1;
@@ -45,6 +53,7 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+
   .bottom-bar {
     position: relative;
     z-index: 1;
@@ -57,8 +66,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
+
   .logo {
     width: clamp(80px, 22vw, 110px);
     height: clamp(80px, 22vw, 110px);
@@ -68,35 +78,63 @@
     box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
     background: rgba(255, 255, 255, 0.1);
   }
-  .task {
-    font-size: clamp(17px, 4vw, 20px);
-    font-weight: bold;
-    padding: 8px 25px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
+
+  /* نوار پیشرفت مثل نصب ویندوز */
+  .progress-bar {
+    width: min(90%, 420px);
+    height: 22px;
+    background: rgba(255, 255, 255, 0.15);
     border: 2px solid #fff;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      #00c6ff 0%,
+      #00c6ff 25%,
+      #0090ff 25%,
+      #0090ff 50%,
+      #00c6ff 50%,
+      #00c6ff 75%,
+      #0090ff 75%,
+      #0090ff 100%
+    );
+    background-size: 60px 100%;
+    animation: fillUp 1.5s ease-out forwards, stripesMove 0.6s linear infinite;
+    transform-origin: right center;
+    transform: scaleX(0);
+  }
+
+  @keyframes fillUp {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  @keyframes stripesMove {
+    from { background-position: 0 0; }
+    to   { background-position: -60px 0; }
   }
 </style>
 </head>
 <body>
   <div class="top-text">
-    ((پیگیری قانونی در خصوص تهدید به انتشار محتوای خصوصی و مستهجن))
-
-بدین‌وسیله به اطلاع می‌رساند، حسب شکایت ثبت‌شده و دستور رسمی از سوی مقام محترم قضایی، تحت عنوان [اقدام به تهدیدهای مکرر شاکی پرونده مبنی بر انتشار و افشای تصاویر خصوصی و محتوای غیرمجاز و همچنین اقدامات انجام‌شده در پیام‌رسان‌ها و سکوهای مجازی، بررسی و تحت پیگرد قانونی قرار گرفته اید.
-
-مطابق مقررات قانون جرایم رایانه‌ای و قانون مجازات اسلامی، انتشار یا در دسترس قرار دادن صوت، تصویر یا فیلم خصوصی و خانوادگی اشخاص بدون رضایت آنان، در شرایط مقرر قانونی، می‌تواند واجد وصف کیفری باشد. همچنین انتشار یا توزیع محتوای مستهجن از طریق سامانه‌های رایانه‌ای و مخابراتی، حسب مورد، مشمول مقررات کیفری مربوط خواهد بود.
-
-بر این اساس، اقدامات انتسابی در بررسی‌های قانونی احراز گردید، پرونده موضوع [تهدید، ارعاب، خشونت و سوءاستفاده جنسی/تهدید به انتشار محتوای خصوصی] جهت رسیدگی به مرجع قضایی صالح ارجاع و اقدامات قانونی لازم نسبت به عامل یا عاملان آن انجام خواهد شد.
-
-«محتواهای مجرمانه این دستگاه بر اساس مصادیق مجرمانه مندرج در قانون جرائم رایانه ای اعم از [موقعیت مکانی، اطلاعات هویتی و ارتباطی و محتوا های موجود در دستگاه ضبط، مستند و اقدامات قانونی لازم جهت پیگیری و برخورد با عامل بکارگیرنده این دستگاه فوراً در اختیار مراجع ذیصلاح و برخورد قضائی آغاز می‌گردد.» 
-
-پرونده علیه شما تشکیل شده و موظف به حضور در [دادسرای انقلاب اسلامی که متعاقباً اعلام خواهد شد] هستید.
+    سلام! این یک متن بلندتر است که در بالای صفحه روی گوشی نمایش داده می‌شود.
   </div>
 
   <div class="bottom-bar">
-    <img src="https://raw.githubusercontent.com/zeinab-rezazadeh/google-meet/main/logo.png" alt="لوگو" class="logo">
-    <div class="task">تسک</div>
+    <img src="logo.png" alt="لوگو" class="logo">
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
   </div>
 </body>
 </html>
