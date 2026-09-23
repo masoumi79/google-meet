@@ -7,11 +7,7 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html {
-    height: 100%;
-    background: #1a1a2e url('bg.png') center center / cover no-repeat fixed;
-    -webkit-background-size: cover;
-  }
+  html, body { height: 100%; }
 
   body {
     min-height: 100vh;
@@ -22,16 +18,23 @@
     color: #fff;
     position: relative;
     text-align: center;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
-  body::before {
-    content: '';
+  /* پس‌زمینه کامل و ثابت */
+  .bg {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-    pointer-events: none;
+    background: #1a1a2e url('bg.png') center center / cover no-repeat;
+    z-index: -2;
+  }
+
+  /* لایه تاریک روی پس‌زمینه */
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
   }
 
   .top-text {
@@ -41,11 +44,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     font-size: clamp(20px, 5vw, 28px);
     line-height: 2;
     font-weight: bold;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
@@ -57,13 +60,13 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    padding: 18px 20px;
-    padding-bottom: max(18px, env(safe-area-inset-bottom));
+    padding: 20px 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
     background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .logo {
@@ -75,10 +78,11 @@
     box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
   }
 
+  /* نوار بلندتر */
   .progress-bar {
-    width: min(55%, 200px);
+    width: min(85%, 340px);
     height: 12px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     border: 1.5px solid #fff;
     border-radius: 3px;
     overflow: hidden;
@@ -105,8 +109,11 @@
 </style>
 </head>
 <body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+
   <div class="top-text">
-    سلام! این یک متن بلندتر است که در بالای صفحه روی گوشی نمایش داده می‌شود.
+    سلام! این یک متن بلندتر است که در بالای صفحه روی گوشی نمایش داده می‌شود. می‌توانی هر چقدر متن می‌خواهی اینجا بگذاری، اگر زیاد شد خودش اسکرول می‌خورد و همه‌اش دیده می‌شود.
   </div>
 
   <div class="bottom-bar">
